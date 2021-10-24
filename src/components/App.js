@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import Button from "./button";
 import UserList from "./Userlist";
 import ItemsList from "./ItemsList";
+import CategoriesList from "./CategoriesList";
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showUsers: false,
       showItems: false,
+      showCategories: false,
     };
 
     this.handleUsersClick = this.handleUsersClick.bind(this);
     this.handleItemsClick = this.handleItemsClick.bind(this);
+    this.handleCategoriesClick = this.handleCategoriesClick.bind(this);
   }
 
   handleUsersClick() {
@@ -26,6 +29,12 @@ export default class App extends Component {
     }));
   }
 
+  handleCategoriesClick() {
+    this.setState((state) => ({
+      showCategories: !state.showCategories,
+    }));
+  }
+
   render() {
     return (
       <div>
@@ -37,6 +46,11 @@ export default class App extends Component {
 
         <Button onClick={this.handleItemsClick} buttonTitle="Items" />
         {this.state.showItems && <ItemsList></ItemsList>}
+
+        <br />
+
+        <Button onClick={this.handleCategoriesClick} buttonTitle="Categories" />
+        {this.state.showCategories && <CategoriesList></CategoriesList>}
       </div>
     );
   }
